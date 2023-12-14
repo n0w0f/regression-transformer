@@ -15,6 +15,9 @@ parser.add_argument(
     "output_filepath", type=str, help="output where to store the vocabulary."
 )
 parser.add_argument(
+    "language", type=str, help="slice in our case"
+)
+parser.add_argument(
     "--max_exponent", type=int, default=5, help="maximum exponent for num-tokens."
 )
 
@@ -25,9 +28,12 @@ def main() -> None:
     input_filepath = args.input_filepath
     output_filepath = args.output_filepath
     max_exponent = args.max_exponent
+    language = args.language
+    print(language)
 
     vocabulary_counter = Counter()
-    tokenizer = ExpressionTokenizer()
+    tokenizer = ExpressionTokenizer(language='SLICE')
+    print(tokenizer.language)
 
     # tokens for properties
     vocabulary_counter.update(
