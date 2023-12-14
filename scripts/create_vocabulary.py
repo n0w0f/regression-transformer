@@ -27,7 +27,10 @@ def main() -> None:
     max_exponent = args.max_exponent
 
     vocabulary_counter = Counter()
-    tokenizer = ExpressionTokenizer()
+    tokenizer = ExpressionTokenizer(language="SLICE")
+    print(tokenizer.language)
+    print(tokenizer)
+    
 
     # tokens for properties
     vocabulary_counter.update(
