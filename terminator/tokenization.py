@@ -21,22 +21,26 @@ SMILES_TOKENIZER_PATTERN = r"(\%\([0-9]{3}\)|\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n
 PSMILES_TOKENIZER_PATTERN = r"(\%\([0-9]{3}\)|\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\||\(|\)|\.|=|#|-|\+|\\|\/|:|~|@|\?|>>?|\*|\[\*\]|\$|\%[0-9]{2}|[0-9])"
 BIGSMILES_TOKENIZER_PATTERN = r"(\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|\(|\)|\.|\,|\{|\}|\[\]|=|#|-|\+|\\|\/|:|~|@|\?|>>?|\*|\$|\%[0-9]{2}|[0-9])"
 POLYMER_GRAPH_TOKENIZER_PATTERN = r"(\%\([0-9]{3}\)|\[[^\]]+]|Br?|Cl?|N|O|S|P|F|I|b|c|n|o|s|p|A|B|C|D|E|R|Q|Z|;|<|>|\||\(|\)|\.|=|#|-|\+|\\|\/|:|~|@|\?|>>?|\*|\$|\%[0-9]{2}|[0-9])"
-SLICE_TOKENIZER_PATH = "/home/so87pot/n0w0f/regression-transformer/slice-assets/tokenizer/tokenizer-slice_396k.json"
+SLICE_TOKENIZER_PATH = "/home/so87pot/n0w0f/regression-transformer/slice-assets/tokenizer/tokenizer-slice_396k_train.json"
+
 
 
 class SliceTokenizer:
-    def __init__(self, vocab_file=SLICE_TOKENIZER_PATH):
-        _tokenizer = Tokenizer.from_file(vocab_file)
+    def __init__(self, file=SLICE_TOKENIZER_PATH):
+        print(file)  # To verify the received path
+        _tokenizer = Tokenizer.from_file(file)
         self.tokenizer = PreTrainedTokenizerFast(
-                    tokenizer_object=_tokenizer,
-                    unk_token="[UNK]",
-                    pad_token="[PAD]",
-                    cls_token="[CLS]",
-                    sep_token="[SEP]",
-                    mask_token="[MASK]",
-                )
+            tokenizer_object=_tokenizer,
+            unk_token="[UNK]",
+            pad_token="[PAD]",
+            cls_token="[CLS]",
+            sep_token="[SEP]",
+            mask_token="[MASK]",
+        )
+
     def tokenize(self, text):
         return self.tokenizer.tokenize(text)
+
     
     
 class RegexTokenizer:
@@ -279,7 +283,7 @@ class ExpressionTokenizer:
         if language == "SMILES":
             self.text_tokenizer = RegexTokenizer(regex_pattern=SMILES_TOKENIZER_PATTERN)
         elif language == "SLICE":
-            self.text_tokenizer = SliceTokenizer(vocab_file=SLICE_TOKENIZER_PATH)
+            self.text_tokenizer = SliceTokenizer(file=SLICE_TOKENIZER_PATH)
         elif language == "SELFIES":
             self.text_tokenizer = SelfiesTokenizer()
         elif language == "AAS":
@@ -381,7 +385,7 @@ class ExpressionBertTokenizer(BertTokenizer):
         if language == "SMILES":
             self.text_tokenizer = RegexTokenizer(regex_pattern=SMILES_TOKENIZER_PATTERN)
         elif language == "SLICE":
-            self.text_tokenizer = SliceTokenizer(vocab_file=SLICE_TOKENIZER_PATH)
+            self.text_tokenizer = SliceTokenizer(file=SLICE_TOKENIZER_PATH)
             
         elif self.language == "SELFIES":
             self.text_tokenizer = SelfiesTokenizer()

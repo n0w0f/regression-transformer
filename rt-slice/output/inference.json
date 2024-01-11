@@ -1,0 +1,19 @@
+{
+	"property_token": [
+		"<dielec>"
+	],
+	"example": "<dielec>1.669|",
+	"property_ranges": {
+		"<dielec>": [
+			0,
+			53.793
+		]
+	},
+	"normalize": [
+		false
+	],
+	"max_span_length": 5,
+	"property_mask_length": {
+		"<dielec>": 5
+	}
+}

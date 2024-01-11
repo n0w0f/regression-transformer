@@ -1,0 +1,20 @@
+{
+	"alternate_steps": 50,
+	"reset_training_loss": true,
+	"cg_collator": "vanilla_cg",
+	"cc_loss": false,
+	"property_tokens": [
+		"<dielec>"
+	],
+	"cg_collator_params": {
+		"do_sample": false,
+		"property_tokens": [
+			"<dielec>"
+		],
+		"plm_probability": 0.16666666666666666,
+		"max_span_length": 5,
+		"entity_separator_token": ".",
+		"mask_entity_separator": false,
+		"entity_to_mask": -1
+	}
+}

@@ -27,7 +27,7 @@ def main() -> None:
     max_exponent = args.max_exponent
 
     vocabulary_counter = Counter()
-    tokenizer = ExpressionTokenizer(language="SLICE")
+    tokenizer = ExpressionTokenizer()
     print(tokenizer.language)
     print(tokenizer)
     
@@ -35,6 +35,8 @@ def main() -> None:
     # tokens for properties
     vocabulary_counter.update(
         [
+            "<dielec>",
+            "<prop0>",
             "<qed>",
             "<logp>",
             "<molwt>",
@@ -82,6 +84,7 @@ def main() -> None:
         "[CLS]",
         "[SEP]",
         "[MASK]",
+        "|"
     ]
 
     with open(output_filepath, "wt") as fp:

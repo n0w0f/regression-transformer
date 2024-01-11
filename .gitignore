@@ -147,3 +147,4 @@ runs
 examples/models
 configs
 bash
+checkpoint*/

@@ -224,7 +224,8 @@ def main():
         data_args.block_size = tokenizer.max_len
         # Our input block size will be the max possible for the model
     else:
-        data_args.block_size = min(data_args.block_size, tokenizer.max_len)
+        #data_args.block_size = min(data_args.block_size, tokenizer.max_len)
+        data_args.block_size = min(data_args.block_size, 250)
 
     # Get datasets
     train_dataset = (
